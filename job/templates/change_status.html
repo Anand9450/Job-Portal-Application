@@ -2,7 +2,7 @@
 
 {% block body %}
 
-{% include 'user_navigation.html' %}
+{% include 'admin_navigation.html' %}
 
 <marquee style="font-family: 'Monotype Corsiva'; font-size: 25px; color : black; background-color : orange; font-weight : bold ; margin-top:1%">
     View Recruiters - Pending
@@ -27,7 +27,7 @@
 
 <script>
     alert("Status Changed Successfully");
-    window.location.href = '{% url "recruiter_pending" %}';
+    window.location = ('{% url "recruiter_all" %}');
 
 </script>
 {% endif %}

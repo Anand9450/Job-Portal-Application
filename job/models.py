@@ -21,3 +21,20 @@ class Recruiter(models.Model):
     status = models.CharField(max_length=20, null=True)
     def _str_(self):
         return self.user.username
+
+
+class Job(models.Model):
+    recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    title = models.CharField(max_length=100)
+    salary = models.FloatField(max_length=50, null=True)
+    image = models.FileField()
+    description = models.CharField(max_length=2000, null=True)
+    experience = models.CharField(max_length=50, null=True)
+    location = models.CharField(max_length=100)
+    skills = models.CharField(max_length=100)
+    creation_date = models.DateField()
+
+    def _str_(self):
+        return self.title
