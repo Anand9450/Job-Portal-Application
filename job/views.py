@@ -295,3 +295,5 @@ def job_list(request):
     data = Recruiter.objects.filter(status = 'pending')
     d = {'data': data}
     return render(request, 'job_list.html', d)
+
+#kbkibi
