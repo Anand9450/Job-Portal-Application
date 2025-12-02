@@ -1,0 +1,25 @@
+{% load static %}
+{% block body %}
+{% include 'user_navigation.html' %}
+
+<div class="container mt-5 mb-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-body text-center py-5">
+            {% if error == "done" %}
+                <h2 class="text-success font-weight-bold"><i class="fas fa-check-circle fa-2x mb-3"></i><br>Application Submitted Successfully!</h2>
+                <p class="lead text-muted">Your application has been sent to the recruiter. You can track its status in "My Applications".</p>
+                <div class="mt-4">
+                    <a href="{% url 'my_applications' %}" class="btn btn-primary btn-lg me-3">View My Applications</a>
+                    <a href="{% url 'latest_jobs' %}" class="btn btn-outline-secondary btn-lg">Browse More Jobs</a>
+                </div>
+            {% else %}
+                <h2 class="text-danger font-weight-bold"><i class="fas fa-times-circle fa-2x mb-3"></i><br>Application Failed</h2>
+                <p class="lead text-muted">Something went wrong. Please try again later.</p>
+                <a href="{% url 'latest_jobs' %}" class="btn btn-primary mt-3">Back to Jobs</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

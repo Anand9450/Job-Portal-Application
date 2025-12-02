@@ -1,0 +1,35 @@
+{% load static %}
+{% block body %}
+{% include 'navigation.html' %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5 font-weight-bold">All Jobs</h2>
+    <div class="row">
+        {% for j in jobs %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{j.image.url}}" class="card-img-top" alt="{{j.title}}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{j.title}}</h5>
+                    <p class="card-text text-muted">{{j.recruiter.company}}</p>
+                    <p class="card-text"><i class="fas fa-map-marker-alt mr-2"></i>{{j.location}}</p>
+                    <p class="card-text"><i class="fas fa-rupee-sign mr-2"></i>{{j.salary}}</p>
+                    <p class="card-text"><small class="text-muted">Posted on: {{j.creation_date}}</small></p>
+                    {% if request.user.is_authenticated %}
+                        {% if j.id in applied_job_ids %}
+                            <a href="{% url 'apply_for_job' j.id %}" class="btn btn-warning btn-block">Edit Application</a>
+                        {% else %}
+                            <a href="{% url 'apply_for_job' j.id %}" class="btn btn-primary btn-block">Apply Now</a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'apply_for_job' j.id %}" class="btn btn-primary btn-block">Apply Now</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

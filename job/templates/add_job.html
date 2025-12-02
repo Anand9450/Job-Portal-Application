@@ -54,7 +54,7 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <label>Experience (In Years):</label>
-            <input type="text" class="form-control" name="email" placeholder="Experience Required" required>
+            <input type="text" class="form-control" name="experience" placeholder="Experience Required" required>
 
         </div>
             <div class="form-group col-md-6">
@@ -92,7 +92,7 @@
 
 <script>
     alert("Job details has been added successfully");
-    window.location.href = '{% url "job_list" %}';
+    window.location = ('{% url "job_list" %}');
 
 </script>
 {% endif %}

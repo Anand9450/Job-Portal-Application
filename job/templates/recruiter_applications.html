@@ -1,0 +1,59 @@
+{% load static %}
+{% block body %}
+{% include 'recruiter_navigation.html' %}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4 font-weight-bold">Applications for {{job.title}}</h2>
+    <div class="card shadow-lg border-0">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Applicant Name</th>
+                            <th>Applied Date</th>
+                            <th>Status</th>
+                            <th>Resume</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in applications %}
+                        <tr>
+                            <td>{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+                            <td>{{i.apply_date}}</td>
+                            <td>
+                                {% if i.status == 'Pending' %}
+                                    <span class="badge bg-warning text-dark">{{i.status}}</span>
+                                {% elif i.status == 'Accepted' %}
+                                    <span class="badge bg-success">{{i.status}}</span>
+                                {% else %}
+                                    <span class="badge bg-danger">{{i.status}}</span>
+                                {% endif %}
+                            </td>
+                            <td><a href="{{i.resume.url}}" target="_blank" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> View</a></td>
+                            <td>
+                                <form method="post" action="{% url 'update_application_status' i.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <select name="status" class="form-select form-select-sm d-inline w-auto" onchange="this.form.submit()">
+                                        <option value="Pending" {% if i.status == 'Pending' %}selected{% endif %}>Pending</option>
+                                        <option value="Accepted" {% if i.status == 'Accepted' %}selected{% endif %}>Accept</option>
+                                        <option value="Rejected" {% if i.status == 'Rejected' %}selected{% endif %}>Reject</option>
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No applications found for this job.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

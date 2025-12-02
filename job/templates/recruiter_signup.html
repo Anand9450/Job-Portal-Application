@@ -108,7 +108,7 @@
 
 <script>
     alert("Signup Successful");
-    window.location.href = '{% url "recruiter_login" %}';
+    window.location = ({% url "recruiter_login" %}');
 
 </script>
 {% endif %}

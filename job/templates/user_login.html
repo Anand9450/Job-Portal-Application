@@ -4,40 +4,43 @@
 
 {% include 'navigation.html' %}
 
-<marquee style="font-family: 'Monotype Corsiva'; font-size: 25px; color : black; background-color : orange; font-weight : bold ; margin-top:1%">
-    User Login
-</marquee>
-<hr>
-<form class="container mt-5" method="post">
-    {% csrf_token %}
-    <label><b>Email ID:</b></label>
-    <input type="email" class="form-control" name="uname" placeholder="Enter Email ID">
+<div class="login-container fade-in">
+    <h2 class="login-title"><i class="fas fa-user-circle me-2"></i>User Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label fw-bold">Email ID</label>
+            <input type="email" class="form-control" name="uname" placeholder="Enter Email ID" required>
+        </div>
 
-    <label><b>Password:</b></label>
-    <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+        <div class="mb-3">
+            <label class="form-label fw-bold">Password</label>
+            <input type="password" class="form-control" name="pwd" placeholder="Enter Password" required>
+        </div>
 
-    <input type="submit" value="Login" class="btn btn-primary" style="margin-top: 2%; color:white; background-color: blue; height : 40px; font-size: 20px">
-    <a href="{% url 'user_signup' %}" class="btn btn-primary" style="margin-top: 2%; color:white; background-color: green; height : 40px; font-size: 20px">CREATE AN ACCOUNT</a>
-</form>
+        <input type="submit" value="Login" class="btn btn-primary login-btn">
+        
+        <div class="text-center mt-3">
+            <a href="{% url 'password_reset' %}" class="text-decoration-none text-muted small">Forgot Password?</a>
+        </div>
 
+        <a href="{% url 'user_signup' %}" class="signup-link">Don't have an account? Create one</a>
+    </form>
+</div>
 
 {% include 'footer.html' %}
 
 {% if error == "no" %}
-
 <script>
     alert("Login Successful");
-    window.location.href = '{% url "user_home" %}';
-
+    window.location = ('{% url "user_home" %}');
 </script>
 {% endif %}
 
 {% if error == "yes" %}
 <script>
     alert("Invalid login data, Please try Again...");
-
 </script>
-
 {% endif %}
 
 {% endblock %}
