@@ -50,11 +50,11 @@ A comprehensive, full-featured **Job Portal** built with **Django** that bridges
 
 | Home Page | Job List |
 |:---:|:---:|
-| *(Add screenshot here)* | *(Add screenshot here)* |
+| ![Home Page](screenshots/home%20page.png) | ![Job List](screenshots/job%20list.png) |
 
 | Application Form | Recruiter Dashboard |
 |:---:|:---:|
-| *(Add screenshot here)* | *(Add screenshot here)* |
+| ![Application Form](screenshots/application%20form.png) | ![Recruiter Dashboard](screenshots/recuiter%20dashboard.png) |
 
 ---
 
